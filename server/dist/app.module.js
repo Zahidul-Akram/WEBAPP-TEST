@@ -11,7 +11,15 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const user_entity_1 = require("./entities/user.entity");
+const users_module_1 = require("./users/users.module");
+const murmur_entity_1 = require("./murmurs/entities/murmur.entity");
+const user_entity_1 = require("./users/entities/user.entity");
+const murmurs_module_1 = require("./murmurs/murmurs.module");
+const like_entity_1 = require("./likes/entities/like.entity");
+const likes_module_1 = require("./likes/likes.module");
+const follows_module_1 = require("./follows/follows.module");
+const follow_entity_1 = require("./follows/entities/follow.entity");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,10 +33,15 @@ exports.AppModule = AppModule = __decorate([
                 username: 'docker',
                 password: 'docker',
                 database: 'test',
-                entities: [user_entity_1.User],
+                entities: [user_entity_1.User, murmur_entity_1.Murmur, like_entity_1.Like, follow_entity_1.Follow],
                 synchronize: true,
             }),
-            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User]),
+            users_module_1.UsersModule,
+            murmurs_module_1.MurmursModule,
+            likes_module_1.LikesModule,
+            follows_module_1.FollowsModule,
+            auth_module_1.AuthModule,
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, murmur_entity_1.Murmur, like_entity_1.Like, follow_entity_1.Follow]),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
