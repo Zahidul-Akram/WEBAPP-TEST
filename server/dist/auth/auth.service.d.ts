@@ -11,6 +11,7 @@ export declare class AuthService {
     }>;
     login(dto: LoginDto): Promise<{
         token: string;
+        userId: number;
     }>;
     verify(token: string): Promise<any>;
 }

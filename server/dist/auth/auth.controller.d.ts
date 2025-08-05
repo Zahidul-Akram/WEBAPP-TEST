@@ -9,5 +9,6 @@ export declare class AuthController {
     }>;
     login(dto: LoginDto): Promise<{
         token: string;
+        userId: number;
     }>;
 }

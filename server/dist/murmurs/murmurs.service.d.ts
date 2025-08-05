@@ -13,4 +13,5 @@ export declare class MurmursService {
     findOne(id: number): Promise<Murmur>;
     delete(id: number, userId: number): Promise<Murmur>;
     getTimelineByUserId(userId: number, page: number): Promise<Murmur[]>;
+    getUserMurmursByUserId(userId: number, page: number): Promise<Murmur[]>;
 }

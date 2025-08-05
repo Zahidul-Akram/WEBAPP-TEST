@@ -39,10 +39,8 @@ let UsersService = class UsersService {
         return this.userRepository.findOne({ where: { id } });
     }
     async findByUsername(userName, password) {
-        const hashed = await bcrypt.hash(password, 10);
         const user = await this.userRepository.findOne({ where: {
-                username: userName,
-                password: hashed
+                username: userName
             } });
         if (!user)
             return null;

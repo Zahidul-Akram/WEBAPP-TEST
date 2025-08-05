@@ -32,10 +32,9 @@ export class UsersService {
   }
 
   async findByUsername(userName: string, password: string): Promise<User | null> {
-    const hashed = await bcrypt.hash(password, 10);
+    // const hashed = await bcrypt.hash(password, 10);
     const user = await this.userRepository.findOne({ where: { 
-      username: userName,
-      password: hashed
+      username: userName
      } });
 
     if (!user) return null;

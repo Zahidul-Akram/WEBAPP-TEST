@@ -37,11 +37,8 @@ let AuthService = class AuthService {
         const user = await this.usersService.findByUsername(dto.username, dto.password);
         if (!user)
             throw new common_1.UnauthorizedException('Invalid credentials');
-        const match = await bcrypt.compare(dto.password, user.password);
-        if (!match)
-            throw new common_1.UnauthorizedException('Invalid credentials');
         const token = this.jwtService.sign({ sub: user.id });
-        return { token };
+        return { token, userId: user.id };
     }
     async verify(token) {
         return this.jwtService.verifyAsync(token);

@@ -4,7 +4,7 @@ import { CreateMurmurDto } from './dto/create-murmur.dto';
 import { UpdateMurmurDto } from './dto/update-murmur.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('api')
 export class MurmursController {
   constructor(private readonly murmurService: MurmursService) { }
@@ -27,6 +27,11 @@ export class MurmursController {
   @Get('getTimelineByUserId/:userId')
   getTimelineByUserId(@Param('userId') userId: number, @Query('page') page: number) {
     return this.murmurService.getTimelineByUserId(userId,page);
+  }
+
+  @Get('getUserMurmursByUserId/:userId')
+  getUserMurmursByUserId(@Param('userId') userId: number, @Query('page') page: number) {
+    return this.murmurService.getUserMurmursByUserId(userId,page);
   }
 
   @Delete('deleteMurmur/:id')

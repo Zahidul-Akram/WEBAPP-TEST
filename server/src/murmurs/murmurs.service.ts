@@ -69,4 +69,15 @@ export class MurmursService {
     skip: (page - 1) * 10,
   });
 }
+
+  async getUserMurmursByUserId(userId: number, page: number) {
+
+  return this.murmurRepository.find({
+    where: { user: { id: userId } },
+    order: { createdAt: 'DESC' },
+    relations: ['user'],
+    take: 10,
+    skip: (page - 1) * 10,
+  });
+}
 }

@@ -7,5 +7,6 @@ export declare class MurmursController {
     findAll(page: string): Promise<import("./entities/murmur.entity").Murmur[]>;
     findOne(id: string): Promise<import("./entities/murmur.entity").Murmur>;
     getTimelineByUserId(userId: number, page: number): Promise<import("./entities/murmur.entity").Murmur[]>;
+    getUserMurmursByUserId(userId: number, page: number): Promise<import("./entities/murmur.entity").Murmur[]>;
     delete(id: number, userId: number): Promise<import("./entities/murmur.entity").Murmur>;
 }
