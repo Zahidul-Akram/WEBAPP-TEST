@@ -29,6 +29,9 @@ let MurmursController = class MurmursController {
     findOne(id) {
         return this.murmurService.findOne(+id);
     }
+    getTimelineByUserId(userId, page) {
+        return this.murmurService.getTimelineByUserId(userId, page);
+    }
     delete(id, userId) {
         return this.murmurService.delete(id, userId);
     }
@@ -42,7 +45,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MurmursController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('murmurs'),
+    (0, common_1.Get)('allMurmurs'),
     __param(0, (0, common_1.Query)('page')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -55,6 +58,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], MurmursController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)('getTimelineByUserId/:userId'),
+    __param(0, (0, common_1.Param)('userId')),
+    __param(1, (0, common_1.Query)('page')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", void 0)
+], MurmursController.prototype, "getTimelineByUserId", null);
 __decorate([
     (0, common_1.Delete)('deleteMurmur/:id'),
     __param(0, (0, common_1.Param)('id')),

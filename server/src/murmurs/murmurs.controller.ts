@@ -12,7 +12,7 @@ export class MurmursController {
     return this.murmurService.createMurmur(dto);
   }
 
-  @Get('murmurs')
+  @Get('allMurmurs')
   findAll(@Query('page') page: string) {
     return this.murmurService.findAll(Number(page) || 1);
   }
@@ -20,6 +20,11 @@ export class MurmursController {
   @Get('findOneMurmur/:id')
   findOne(@Param('id') id: string) {
     return this.murmurService.findOne(+id);
+  }
+
+  @Get('getTimelineByUserId/:userId')
+  getTimelineByUserId(@Param('userId') userId: number, @Query('page') page: number) {
+    return this.murmurService.getTimelineByUserId(userId,page);
   }
 
   @Delete('deleteMurmur/:id')

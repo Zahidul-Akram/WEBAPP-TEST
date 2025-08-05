@@ -6,23 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MurmursModule = void 0;
+exports.FollowsModule = void 0;
 const common_1 = require("@nestjs/common");
-const murmurs_service_1 = require("./murmurs.service");
-const murmurs_controller_1 = require("./murmurs.controller");
+const follows_service_1 = require("./follows.service");
+const follows_controller_1 = require("./follows.controller");
 const typeorm_1 = require("@nestjs/typeorm");
+const follow_entity_1 = require("./entities/follow.entity");
 const user_entity_1 = require("../users/entities/user.entity");
-const murmur_entity_1 = require("./entities/murmur.entity");
-const follows_service_1 = require("../follows/follows.service");
-const follow_entity_1 = require("../follows/entities/follow.entity");
-let MurmursModule = class MurmursModule {
+let FollowsModule = class FollowsModule {
 };
-exports.MurmursModule = MurmursModule;
-exports.MurmursModule = MurmursModule = __decorate([
+exports.FollowsModule = FollowsModule;
+exports.FollowsModule = FollowsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([murmur_entity_1.Murmur, user_entity_1.User, follow_entity_1.Follow])],
-        controllers: [murmurs_controller_1.MurmursController],
-        providers: [murmurs_service_1.MurmursService, follows_service_1.FollowsService],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([follow_entity_1.Follow, user_entity_1.User])
+        ],
+        controllers: [follows_controller_1.FollowsController],
+        providers: [follows_service_1.FollowsService],
     })
-], MurmursModule);
-//# sourceMappingURL=murmurs.module.js.map
+], FollowsModule);
+//# sourceMappingURL=follows.module.js.map

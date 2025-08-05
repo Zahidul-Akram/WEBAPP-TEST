@@ -8,6 +8,8 @@ import { User } from './users/entities/user.entity';
 import { MurmursModule } from './murmurs/murmurs.module';
 import { Like } from './likes/entities/like.entity';
 import { LikesModule } from './likes/likes.module';
+import { FollowsModule } from './follows/follows.module';
+import { Follow } from './follows/entities/follow.entity';
 
 @Module({
   imports: [
@@ -18,13 +20,14 @@ import { LikesModule } from './likes/likes.module';
       username: 'docker',
       password: 'docker',
       database: 'test',
-      entities: [User,Murmur,Like],
+      entities: [User,Murmur,Like,Follow],
       synchronize: true,
     }),
     UsersModule,
     MurmursModule,
     LikesModule,
-    TypeOrmModule.forFeature([User,Murmur,Like]),
+    FollowsModule,
+    TypeOrmModule.forFeature([User,Murmur,Like,Follow]),
   ],
   controllers: [AppController],
   providers: [AppService],

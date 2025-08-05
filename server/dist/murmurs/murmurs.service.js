@@ -18,10 +18,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const murmur_entity_1 = require("./entities/murmur.entity");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("../users/entities/user.entity");
+const follows_service_1 = require("../follows/follows.service");
 let MurmursService = class MurmursService {
-    constructor(murmurRepository, userRepository) {
+    constructor(murmurRepository, userRepository, followsService) {
         this.murmurRepository = murmurRepository;
         this.userRepository = userRepository;
+        this.followsService = followsService;
     }
     async createMurmur(createMurmurDto) {
         const user = await this.userRepository.findOne({ where: {
@@ -61,6 +63,16 @@ let MurmursService = class MurmursService {
             throw new common_1.NotFoundException('Forbidden');
         return await this.murmurRepository.remove(murmur);
     }
+    async getTimelineByUserId(userId, page) {
+        const followingIds = await this.followsService.getFollowingIds(userId);
+        return this.murmurRepository.find({
+            where: { user: { id: (0, typeorm_2.In)([...followingIds, userId]) } },
+            order: { createdAt: 'DESC' },
+            relations: ['user'],
+            take: 10,
+            skip: (page - 1) * 10,
+        });
+    }
 };
 exports.MurmursService = MurmursService;
 exports.MurmursService = MurmursService = __decorate([
@@ -68,6 +80,7 @@ exports.MurmursService = MurmursService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(murmur_entity_1.Murmur)),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository])
+        typeorm_2.Repository,
+        follows_service_1.FollowsService])
 ], MurmursService);
 //# sourceMappingURL=murmurs.service.js.map
