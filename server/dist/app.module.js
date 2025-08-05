@@ -19,6 +19,7 @@ const like_entity_1 = require("./likes/entities/like.entity");
 const likes_module_1 = require("./likes/likes.module");
 const follows_module_1 = require("./follows/follows.module");
 const follow_entity_1 = require("./follows/entities/follow.entity");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -39,6 +40,7 @@ exports.AppModule = AppModule = __decorate([
             murmurs_module_1.MurmursModule,
             likes_module_1.LikesModule,
             follows_module_1.FollowsModule,
+            auth_module_1.AuthModule,
             typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, murmur_entity_1.Murmur, like_entity_1.Like, follow_entity_1.Follow]),
         ],
         controllers: [app_controller_1.AppController],

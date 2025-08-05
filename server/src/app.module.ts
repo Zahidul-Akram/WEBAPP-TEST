@@ -10,6 +10,7 @@ import { Like } from './likes/entities/like.entity';
 import { LikesModule } from './likes/likes.module';
 import { FollowsModule } from './follows/follows.module';
 import { Follow } from './follows/entities/follow.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { Follow } from './follows/entities/follow.entity';
     MurmursModule,
     LikesModule,
     FollowsModule,
+    AuthModule,
     TypeOrmModule.forFeature([User,Murmur,Like,Follow]),
   ],
   controllers: [AppController],
