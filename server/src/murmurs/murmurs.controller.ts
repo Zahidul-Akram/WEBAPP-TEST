@@ -3,7 +3,7 @@ import { MurmursService } from './murmurs.service';
 import { CreateMurmurDto } from './dto/create-murmur.dto';
 import { UpdateMurmurDto } from './dto/update-murmur.dto';
 
-@Controller('murmurs')
+@Controller('api')
 export class MurmursController {
   constructor(private readonly murmurService: MurmursService) { }
 
@@ -17,7 +17,7 @@ export class MurmursController {
     return this.murmurService.findAll(Number(page) || 1);
   }
 
-  @Get('murmurs/:id')
+  @Get('findOneMurmur/:id')
   findOne(@Param('id') id: string) {
     return this.murmurService.findOne(+id);
   }

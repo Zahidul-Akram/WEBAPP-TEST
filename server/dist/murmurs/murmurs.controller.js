@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MurmursController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)('murmurs/:id'),
+    (0, common_1.Get)('findOneMurmur/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -64,7 +64,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MurmursController.prototype, "delete", null);
 exports.MurmursController = MurmursController = __decorate([
-    (0, common_1.Controller)('murmurs'),
+    (0, common_1.Controller)('api'),
     __metadata("design:paramtypes", [murmurs_service_1.MurmursService])
 ], MurmursController);
 //# sourceMappingURL=murmurs.controller.js.map

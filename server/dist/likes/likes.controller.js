@@ -12,47 +12,49 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersController = void 0;
+exports.LikesController = void 0;
 const common_1 = require("@nestjs/common");
-const users_service_1 = require("./users.service");
-const create_user_dto_1 = require("./dto/create-user.dto");
-let UsersController = class UsersController {
-    constructor(usersService) {
-        this.usersService = usersService;
+const likes_service_1 = require("./likes.service");
+let LikesController = class LikesController {
+    constructor(likesService) {
+        this.likesService = likesService;
     }
-    create(createUserDto) {
-        return this.usersService.create(createUserDto);
+    like(murmurId, userId) {
+        return this.likesService.doLike(murmurId, userId);
     }
-    findAll() {
-        return this.usersService.findAll();
+    unlike(murmurId, userId) {
+        return this.likesService.doUnlike(murmurId, userId);
     }
-    findOne(id) {
-        return this.usersService.findOne(+id);
+    count(murmurId) {
+        return this.likesService.countLikes(+murmurId);
     }
 };
-exports.UsersController = UsersController;
+exports.LikesController = LikesController;
 __decorate([
-    (0, common_1.Post)('createUser'),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Post)('likeMurmurByUserId/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Query)('userId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "create", null);
+], LikesController.prototype, "like", null);
 __decorate([
-    (0, common_1.Get)('findAllUsers'),
+    (0, common_1.Delete)('unlikeMurmurByUserId/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Query)('userId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findAll", null);
+], LikesController.prototype, "unlike", null);
 __decorate([
-    (0, common_1.Get)('findOneUser/:id'),
+    (0, common_1.Get)('countMurmurLikes/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findOne", null);
-exports.UsersController = UsersController = __decorate([
+], LikesController.prototype, "count", null);
+exports.LikesController = LikesController = __decorate([
     (0, common_1.Controller)('api'),
-    __metadata("design:paramtypes", [users_service_1.UsersService])
-], UsersController);
-//# sourceMappingURL=users.controller.js.map
+    __metadata("design:paramtypes", [likes_service_1.LikesService])
+], LikesController);
+//# sourceMappingURL=likes.controller.js.map

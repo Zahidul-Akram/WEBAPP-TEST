@@ -15,6 +15,8 @@ const users_module_1 = require("./users/users.module");
 const murmur_entity_1 = require("./murmurs/entities/murmur.entity");
 const user_entity_1 = require("./users/entities/user.entity");
 const murmurs_module_1 = require("./murmurs/murmurs.module");
+const like_entity_1 = require("./likes/entities/like.entity");
+const likes_module_1 = require("./likes/likes.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,12 +30,13 @@ exports.AppModule = AppModule = __decorate([
                 username: 'docker',
                 password: 'docker',
                 database: 'test',
-                entities: [user_entity_1.User, murmur_entity_1.Murmur],
+                entities: [user_entity_1.User, murmur_entity_1.Murmur, like_entity_1.Like],
                 synchronize: true,
             }),
             users_module_1.UsersModule,
             murmurs_module_1.MurmursModule,
-            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, murmur_entity_1.Murmur]),
+            likes_module_1.LikesModule,
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, murmur_entity_1.Murmur, like_entity_1.Like]),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
