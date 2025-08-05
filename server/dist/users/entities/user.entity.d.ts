@@ -4,6 +4,7 @@ export declare class User {
     username: string;
     name: string;
     email: string;
+    password: string;
     isActive: boolean;
     createdAt: Date;
     murmurs: Murmur[];

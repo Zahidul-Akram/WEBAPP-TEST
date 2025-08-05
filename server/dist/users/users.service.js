@@ -17,15 +17,18 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
 const typeorm_2 = require("typeorm");
+const bcrypt = require("bcrypt");
 let UsersService = class UsersService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
     async create(data) {
+        const hashed = await bcrypt.hash(data.password, 10);
         const user = new user_entity_1.User();
         user.username = data.username;
         user.name = data.name;
         user.email = data.email;
+        user.password = hashed;
         user.isActive = true;
         return await this.userRepository.save(user);
     }
@@ -34,6 +37,16 @@ let UsersService = class UsersService {
     }
     findOne(id) {
         return this.userRepository.findOne({ where: { id } });
+    }
+    async findByUsername(userName, password) {
+        const hashed = await bcrypt.hash(password, 10);
+        const user = await this.userRepository.findOne({ where: {
+                username: userName,
+                password: hashed
+            } });
+        if (!user)
+            return null;
+        return user;
     }
 };
 exports.UsersService = UsersService;

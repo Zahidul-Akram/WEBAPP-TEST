@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { MurmursService } from './murmurs.service';
 import { CreateMurmurDto } from './dto/create-murmur.dto';
 import { UpdateMurmurDto } from './dto/update-murmur.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('api')
 export class MurmursController {
   constructor(private readonly murmurService: MurmursService) { }

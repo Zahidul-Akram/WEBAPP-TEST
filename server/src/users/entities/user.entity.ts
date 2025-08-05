@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { IsEmail } from 'class-validator';
 import { Murmur } from 'src/murmurs/entities/murmur.entity';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
@@ -12,10 +13,14 @@ export class User {
 
   @Column()
   name: string;
-  
+
   @Column()
   @IsEmail()
   email: string;
+
+  @Column()
+  @Exclude()
+  password: string;
 
   @Column({ default: true })
   isActive!: boolean;

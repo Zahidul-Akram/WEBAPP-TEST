@@ -16,6 +16,7 @@ exports.MurmursController = void 0;
 const common_1 = require("@nestjs/common");
 const murmurs_service_1 = require("./murmurs.service");
 const create_murmur_dto_1 = require("./dto/create-murmur.dto");
+const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 let MurmursController = class MurmursController {
     constructor(murmurService) {
         this.murmurService = murmurService;
@@ -75,6 +76,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MurmursController.prototype, "delete", null);
 exports.MurmursController = MurmursController = __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('api'),
     __metadata("design:paramtypes", [murmurs_service_1.MurmursService])
 ], MurmursController);
