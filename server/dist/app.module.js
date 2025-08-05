@@ -11,7 +11,10 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const user_entity_1 = require("./entities/user.entity");
+const users_module_1 = require("./users/users.module");
+const murmur_entity_1 = require("./murmurs/entities/murmur.entity");
+const user_entity_1 = require("./users/entities/user.entity");
+const murmurs_module_1 = require("./murmurs/murmurs.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,10 +28,12 @@ exports.AppModule = AppModule = __decorate([
                 username: 'docker',
                 password: 'docker',
                 database: 'test',
-                entities: [user_entity_1.User],
+                entities: [user_entity_1.User, murmur_entity_1.Murmur],
                 synchronize: true,
             }),
-            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User]),
+            users_module_1.UsersModule,
+            murmurs_module_1.MurmursModule,
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, murmur_entity_1.Murmur]),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
